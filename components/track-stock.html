@@ -1,0 +1,173 @@
+<div class="track-stock-container">
+
+    <!-- Hero Section: Simplified Title -->
+    <div class="tt-hero-section animate-slide-up" style="padding: 2rem 0; text-align: left;">
+        <h1 class="tt-hero-title" style="margin-bottom: 0.5rem;">Live Market Overview</h1>
+        <p class="tt-sub-hero" style="margin-bottom: 1.5rem;">Real-time price tracking and quantitative market intelligence.</p>
+
+        <!-- Market Intelligence Snippets -->
+        <div style="display: flex; gap: 1rem; justify-content: flex-start; flex-wrap: wrap;" id="landing-predictions">
+            <div class="indicator-chip"
+                style="background: rgba(16, 185, 129, 0.1); border-color: rgba(16, 185, 129, 0.2); color: var(--success);">
+                <i class="ph ph-cpu"></i> <strong>Engine Active:</strong> Alpha+ Signals Enabled
+            </div>
+            
+            <div class="market-status-badge" id="market-exchange-badge" style="background: rgba(59, 130, 246, 0.1); border-color: rgba(59, 130, 246, 0.2); color: #3b82f6;">
+                <i class="ph-fill ph-bank"></i> <span>NYSE & NASDAQ Global Markets</span>
+            </div>
+
+            <div class="market-status-badge" id="market-status-container">
+                <div class="status-indicator live" id="market-status-dot"></div>
+                <i class="ph-fill ph-clock-countdown" style="font-size: 1rem; margin-right: 0.25rem;"></i>
+                <span id="market-status-text">Market is currently Open</span>
+            </div>
+
+            <div class="market-status-badge" id="market-session-info" style="background: rgba(139, 92, 246, 0.1); border-color: rgba(139, 92, 246, 0.2); color: #8b5cf6;">
+                <i class="ph-fill ph-calendar-check"></i> <span id="market-session-text">Next Session: --:-- IST</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Dashboard Area -->
+    <div class="tt-dashboard-grid full-width animate-fade-in" style="animation-delay: 0.1s; display: block;">
+
+        <!-- Moving Live Stock Display (Enhanced Area) -->
+        <div class="tt-card ticker-large-card" style="margin-bottom: 2rem; overflow: hidden;">
+            <div class="tt-card-title" style="padding: 1.5rem 1.75rem 0.5rem;">
+                <i class="ph-fill ph-trend-up" style="color: var(--primary);"></i>
+                Real-Time Price Flow
+            </div>
+            
+            <div class="stock-ticker-container large">
+                <div class="ticker-track">
+                    <!-- Dynamic Ticker Cards (15 SLOTS) -->
+                    <div class="ticker-card">
+                        <div class="ticker-header"><span>AAPL</span><span class="price-up">+1.2%</span></div>
+                        <div class="ticker-price">$0.00</div>
+                        <div class="ticker-meta">Technology • Large Cap</div>
+                    </div>
+                    <div class="ticker-card">
+                        <div class="ticker-header"><span>MSFT</span><span class="price-down">-0.5%</span></div>
+                        <div class="ticker-price">$0.00</div>
+                        <div class="ticker-meta">Software • Large Cap</div>
+                    </div>
+                    <div class="ticker-card">
+                        <div class="ticker-header"><span>TSLA</span><span class="price-up">+2.4%</span></div>
+                        <div class="ticker-price">$0.00</div>
+                        <div class="ticker-meta">Auto • Growth</div>
+                    </div>
+                    <div class="ticker-card">
+                        <div class="ticker-header"><span>AMZN</span><span class="price-up">+0.8%</span></div>
+                        <div class="ticker-price">$0.00</div>
+                        <div class="ticker-meta">Retail • Growth</div>
+                    </div>
+                    <div class="ticker-card">
+                        <div class="ticker-header"><span>GOOGL</span><span class="price-down">-1.1%</span></div>
+                        <div class="ticker-price">$0.00</div>
+                        <div class="ticker-meta">Advertising • Tech</div>
+                    </div>
+                    <div class="ticker-card">
+                        <div class="ticker-header"><span>NVDA</span><span class="price-up">+3.5%</span></div>
+                        <div class="ticker-price">$0.00</div>
+                        <div class="ticker-meta">Hardware • AI</div>
+                    </div>
+                    <div class="ticker-card">
+                        <div class="ticker-header"><span>META</span><span class="price-up">+1.5%</span></div>
+                        <div class="ticker-price">$0.00</div>
+                        <div class="ticker-meta">Social • Tech</div>
+                    </div>
+                    <div class="ticker-card">
+                        <div class="ticker-header"><span>NFLX</span><span class="price-down">-0.2%</span></div>
+                        <div class="ticker-price">$0.00</div>
+                        <div class="ticker-meta">Media • Growth</div>
+                    </div>
+                    <div class="ticker-card">
+                        <div class="ticker-header"><span>AMD</span><span class="price-up">+4.2%</span></div>
+                        <div class="ticker-price">$0.00</div>
+                        <div class="ticker-meta">Semiconductors</div>
+                    </div>
+                    <div class="ticker-card">
+                        <div class="ticker-header"><span>DIS</span><span class="price-up">+0.5%</span></div>
+                        <div class="ticker-price">$0.00</div>
+                        <div class="ticker-meta">Entertainment</div>
+                    </div>
+                    <div class="ticker-card">
+                        <div class="ticker-header"><span>JPM</span><span class="price-down">-0.3%</span></div>
+                        <div class="ticker-price">$0.00</div>
+                        <div class="ticker-meta">Banking • Finance</div>
+                    </div>
+                    <div class="ticker-card">
+                        <div class="ticker-header"><span>COIN</span><span class="price-up">+5.8%</span></div>
+                        <div class="ticker-price">$0.00</div>
+                        <div class="ticker-meta">Fintech • Crypto</div>
+                    </div>
+                    <div class="ticker-card">
+                        <div class="ticker-header"><span>V</span><span class="price-up">+0.9%</span></div>
+                        <div class="ticker-price">$0.00</div>
+                        <div class="ticker-meta">Payments • Fintech</div>
+                    </div>
+                    <div class="ticker-card">
+                        <div class="ticker-header"><span>WMT</span><span class="price-up">+1.1%</span></div>
+                        <div class="ticker-price">$0.00</div>
+                        <div class="ticker-meta">Consumer • Retail</div>
+                    </div>
+                    <div class="ticker-card">
+                        <div class="ticker-header"><span>COST</span><span class="price-down">-0.4%</span></div>
+                        <div class="ticker-price">$0.00</div>
+                        <div class="ticker-meta">Consumer • Wholesale</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Market Statistics (Optimized Width Row) -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem;">
+            <!-- Top Gainers -->
+            <div class="tt-card dashboard-stats-card">
+                <div class="tt-card-title">
+                    <i class="ph-fill ph-arrow-up-right" style="color: var(--success);"></i>
+                    Market Top Gainers
+                </div>
+                <div class="stats-table-container">
+                    <table class="basic-stats-table">
+                        <thead>
+                            <tr>
+                                <th>Symbol</th>
+                                <th>Sector</th>
+                                <th>Price</th>
+                                <th>Change</th>
+                            </tr>
+                        </thead>
+                        <tbody id="top-gainers-list">
+                            <!-- Populated via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Top Losers -->
+            <div class="tt-card dashboard-stats-card" style="transform: translateX(-20px);">
+                <div class="tt-card-title">
+                    <i class="ph-fill ph-arrow-down-right" style="color: var(--danger);"></i>
+                    Market Top Losers
+                </div>
+                <div class="stats-table-container">
+                    <table class="basic-stats-table">
+                        <thead>
+                            <tr>
+                                <th>Symbol</th>
+                                <th>Sector</th>
+                                <th>Price</th>
+                                <th>Change</th>
+                            </tr>
+                        </thead>
+                        <tbody id="top-losers-list">
+                            <!-- Populated via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

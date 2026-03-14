@@ -1,0 +1,105 @@
+<div class="top-bar" style="margin-bottom: 1rem;">
+    <h2>Trading Simulator</h2>
+    <p>Practice trading strategies without risking real money.</p>
+</div>
+
+<div class="dashboard-grid">
+    <!-- Trade Form -->
+    <div class="card">
+        <h3>New Trade</h3>
+        <div style="display: flex; flex-direction: column; gap: 1rem; margin-top: 1.5rem;">
+            <div>
+                <label style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem;">Stock Symbol</label>
+                <div style="position: relative;">
+                    <input type="text" id="sim-symbol" placeholder="e.g. AMZN"
+                        oninput="this.value = this.value.toUpperCase()">
+                    <span style="position: absolute; right: 1rem; top: 0.7rem; font-size: 0.8rem; font-weight: 600;"
+                        id="sim-current-price">$0.00</span>
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <div>
+                    <label style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem;">Order Type</label>
+                    <select id="sim-type">
+                        <option value="buy">Buy</option>
+                        <option value="sell">Sell</option>
+                    </select>
+                </div>
+                <div>
+                    <label style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem;">Quantity</label>
+                    <input type="number" id="sim-qty" value="1" min="1">
+                </div>
+            </div>
+
+            <div
+                style="padding: 1rem; background: var(--input-bg); border-radius: var(--radius-md); margin-top: 0.5rem;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                    <span style="color: var(--text-muted);">Estimated Total</span>
+                    <span style="font-weight: 600;" id="sim-total">$0.00</span>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                    <span style="color: var(--text-muted);">Fees (0.1%)</span>
+                    <span id="sim-fees">$0.00</span>
+                </div>
+            </div>
+
+            <button class="btn btn-primary" style="width: 100%; margin-top: 0.5rem;" onclick="app.executeSimulation()">
+                Execute Order
+            </button>
+        </div>
+    </div>
+
+    <!-- Live Preview / Outcome -->
+    <div class="card">
+        <h3>Projected Outcome</h3>
+        <div
+            style="height: 200px; display: flex; align-items: center; justify-content: center; flex-direction: column; text-align: center;">
+            <div style="font-size: 3rem; font-weight: 700; color: var(--text-muted);" id="sim-projected-gain">
+                --%
+            </div>
+            <p style="margin-top: 0.5rem; color: var(--text-muted);">Enter a symbol above to see forecast</p>
+            <div style="margin-top: 1.5rem; width: 100%;">
+                <div
+                    style="display: flex; justify-content: space-between; font-size: 0.85rem; padding: 0.5rem 0; border-bottom: 1px solid var(--border-color);">
+                    <span>Bear Case (1Y)</span>
+                    <span style="color: var(--danger);" id="sim-bear-case">0.0%</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-size: 0.85rem; padding: 0.5rem 0;">
+                    <span>Bull Case (1Y)</span>
+                    <span style="color: var(--success);" id="sim-bull-case">0.0%</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card" style="margin-top: 1.5rem;">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+        <h3 style="margin-bottom: 0;">Recent Simulations</h3>
+        <button class="btn-outline" onclick="app.clearSimulationHistory()"
+            style="padding: 0.4rem 0.8rem; font-size: 0.85rem; color: var(--danger); border-color: rgba(239, 68, 68, 0.2);">
+            <i class="ph ph-trash"></i> Clear History
+        </button>
+    </div>
+    <div class="table-container">
+        <table style="margin-top: 1rem;">
+            <thead>
+                <tr>
+                    <th>Time</th>
+                    <th>Type</th>
+                    <th>Symbol</th>
+                    <th>Qty</th>
+                    <th>Entry Price</th>
+                    <th>Total Value</th>
+                </tr>
+            </thead>
+            <tbody id="simulation-history">
+                <tr>
+                    <td colspan="6" style="text-align: center; padding: 2rem; color: var(--text-muted);">No simulations
+                        yet</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

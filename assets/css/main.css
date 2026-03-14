@@ -1,0 +1,373 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+    /* Brand Colors - Royal Green/Teal Palette */
+    --primary-h: 175;
+    --primary-s: 55%;
+    --primary-l: 35%;
+    --primary: hsl(var(--primary-h), var(--primary-s), var(--primary-l));
+    --primary-glow: hsl(var(--primary-h), var(--primary-s), 45%, 0.25);
+
+    /* Accent Teal/Green Shades */
+    --accent-teal: #1a5f5f;
+    --accent-sage: #6b9080;
+    --accent-mint: #a4c3b2;
+
+    /* Semantic Colors - Adjusted for Green Theme */
+    --success: #2d6a4f;
+    --danger: #d64545;
+    --warning: #d4a574;
+    --info: #5a9c8e;
+
+    /* Light Mode Base - Warm Beige/Cream Palette */
+    --bg-body: #fdfbf7;      /* Warmer off-white */
+    --bg-card: #fffdfa;      /* Soft cream */
+    --bg-glass: rgba(255, 253, 250, 0.85);
+    --border-color: #f2e9d8;
+    --text-main: #2c3e3a;
+    --text-muted: #6b7f7a;
+    --input-bg: #fdfaf3;
+
+    /* Shadows - More Sophisticated */
+    --shadow-sm: 0 1px 3px 0 rgba(45, 122, 110, 0.08);
+    --shadow-md: 0 4px 12px -2px rgba(45, 122, 110, 0.12), 0 2px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-lg: 0 20px 25px -5px rgba(45, 122, 110, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    --shadow-glow: 0 0 20px var(--primary-glow);
+    --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+
+    /* Layout - Refined proportions */
+    --sidebar-width: 280px;
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+    --radius-xl: 24px;
+    --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme="dark"] {
+    /* Dark Mode Base - Deep Teal/Green Tones */
+    --bg-body: #0d1f1c;
+    --bg-card: #1a3330;
+    --bg-glass: rgba(26, 51, 48, 0.8);
+    --border-color: #2d4a45;
+    --text-main: #f0ede5;
+    --text-muted: #a8b5b1;
+    --input-bg: #152824;
+
+    /* Brighter semantic colors for dark mode legibility */
+    --success: #34d399;
+    --danger: #f87171;
+    --warning: #fbbf24;
+
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-body);
+    background-image:
+        radial-gradient(at 40% 20%, rgba(107, 144, 128, 0.08) 0px, transparent 50%),
+        radial-gradient(at 80% 0%, rgba(45, 122, 110, 0.05) 0px, transparent 50%),
+        radial-gradient(at 0% 50%, rgba(164, 195, 178, 0.06) 0px, transparent 50%);
+    color: var(--text-main);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    color: var(--text-main);
+}
+
+p {
+    line-height: 1.6;
+    color: var(--text-muted);
+}
+
+/* Utilities */
+.glass {
+    background: var(--bg-glass);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--border-color);
+}
+
+.card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition-smooth), box-shadow var(--transition-smooth), border-color var(--transition-smooth);
+    position: relative;
+    overflow: hidden;
+}
+
+.card::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 0;
+    background: var(--primary);
+    transition: height var(--transition-smooth);
+}
+
+.card:hover {
+    box-shadow: var(--shadow-lg);
+    border-color: rgba(45, 122, 110, 0.2);
+    transform: translateY(-4px);
+}
+
+.card:hover::after {
+    height: 100%;
+}
+
+.card:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--primary);
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-md);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    border: 1px solid transparent;
+    font-size: 0.9rem;
+    gap: 0.5rem;
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    color: white;
+    box-shadow: var(--shadow-md);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary:hover {
+    filter: brightness(1.1);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg), 0 0 0 4px var(--primary-glow);
+}
+
+.btn-outline {
+    background-color: var(--bg-card);
+    border-color: var(--border-color);
+    color: var(--text-main);
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-outline:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    background-color: var(--bg-body);
+    transform: translateY(-1px);
+}
+
+/* Inputs */
+input,
+select,
+textarea {
+    background-color: var(--input-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 0.6rem 1rem;
+    color: var(--text-main);
+    width: 100%;
+    font-family: inherit;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+    outline: none;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px var(--primary-glow);
+}
+
+/* Fade In Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.4s ease-out forwards;
+}
+
+/* Spinner rotation — Phosphor Icons doesn't include ph-spin natively */
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Email Check Notification Animations */
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOutRight {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+}
+
+/* Enhanced Mobile Responsiveness */
+@media (max-width: 768px) {
+    :root {
+        --sidebar-width: 100%;
+        --radius-md: 8px;
+        --radius-lg: 12px;
+    }
+
+    body {
+        font-size: 14px;
+    }
+
+    h1 { font-size: 1.5rem; }
+    h2 { font-size: 1.25rem; }
+    h3 { font-size: 1.1rem; }
+
+    .card {
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .btn {
+        padding: 0.75rem 1rem;
+        font-size: 0.9rem;
+        min-height: 44px; /* Better touch target */
+    }
+
+    input, select, textarea {
+        padding: 0.75rem;
+        font-size: 16px; /* Prevents zoom on iOS */
+        min-height: 44px;
+    }
+
+    /* Better spacing for touch */
+    .dashboard-grid {
+        gap: 1rem;
+    }
+
+    /* Mobile notification adjustments */
+    #email-check-notification {
+        right: 10px !important;
+        left: 10px !important;
+        max-width: none !important;
+        top: 60px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .card {
+        padding: 0.75rem;
+    }
+
+    .btn {
+        padding: 0.75rem;
+        font-size: 0.85rem;
+    }
+
+    /* Compact form layouts */
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Better mobile table handling */
+    .table-container {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* Mobile-friendly modal */
+    #about-modal > div {
+        margin: 1rem;
+        max-width: calc(100% - 2rem);
+    }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+    .btn:hover {
+        transform: none;
+    }
+    
+    .card:hover {
+        transform: none;
+        box-shadow: var(--shadow-sm);
+    }
+
+    /* Better touch feedback */
+    .btn:active {
+        transform: scale(0.98);
+        transition: transform 0.1s ease;
+    }
+}
+
+/* Landscape mobile optimizations */
+@media (max-width: 768px) and (orientation: landscape) {
+    .card {
+        padding: 0.75rem 1rem;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.75rem;
+    }
+}
+
+.ph-spin {
+    display: inline-block;
+    animation: spin 0.8s linear infinite;
+}

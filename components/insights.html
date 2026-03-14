@@ -1,0 +1,148 @@
+<!-- ===== MARKET FORECAST PAGE ===== -->
+
+<div
+    style="background: linear-gradient(135deg, #1a5f5f 0%, #2d7a6e 60%, #6b9080 100%); border-radius: var(--radius-lg); padding: 2rem; margin-bottom: 2rem; color: white; position: relative; overflow: hidden;">
+    <div
+        style="position: absolute; top: -40px; right: -40px; width: 200px; height: 200px; border-radius: 50%; background: rgba(255,255,255,0.05);">
+    </div>
+    <div style="position: relative; z-index: 1;">
+        <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+            <div
+                style="background: rgba(255,255,255,0.15); border-radius: 12px; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem;">
+                <i class="ph-fill ph-chart-line-up"></i>
+            </div>
+            <div>
+                <h2 style="margin:0; font-size: 1.5rem; font-weight: 800;">Market Forecast Dashboard</h2>
+                <p style="margin:0; font-size: 0.85rem; opacity: 0.8;">Alpha+ Quantitative Mathematical Engine v1.2</p>
+            </div>
+        </div>
+        <p style="margin:0; opacity: 0.85; max-width: 600px; line-height: 1.6; font-size: 0.95rem;">
+            Select a stock below. Our math engine processes 50+ data points including RSI, EMA crossover, and Bollinger
+            Bands to generate a high-precision trading signal.
+        </p>
+    </div>
+</div>
+
+<!-- Selection Bar -->
+<div class="card card-static" style="margin-bottom: 1.5rem;">
+    <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+        <div style="display: flex; gap: 1rem; align-items: center; flex: 1;">
+            <div style="flex: 1; max-width: 300px;">
+                <label
+                    style="display: block; font-size: 0.75rem; font-weight: 700; color: var(--text-muted); margin-bottom: 0.5rem; text-transform: uppercase;">Analyze
+                    Stock</label>
+                <select id="forecast-stock" style="width: 100%;">
+                    <option value="AAPL">Apple (AAPL)</option>
+                    <option value="MSFT">Microsoft (MSFT)</option>
+                    <option value="GOOGL">Alphabet (GOOGL)</option>
+                    <option value="AMZN">Amazon (AMZN)</option>
+                    <option value="TSLA">Tesla (TSLA)</option>
+                    <option value="NVDA">NVIDIA (NVDA)</option>
+                    <option value="META">Meta (META)</option>
+                    <option value="NFLX">Netflix (NFLX)</option>
+                    <option value="AMD">AMD (AMD)</option>
+                    <option value="DIS">Disney (DIS)</option>
+                    <option value="JPM">JPMorgan (JPM)</option>
+                    <option value="COIN">Coinbase (COIN)</option>
+                    <option value="V">Visa (V)</option>
+                    <option value="WMT">Walmart (WMT)</option>
+                    <option value="COST">Costco (COST)</option>
+                </select>
+            </div>
+            <button class="btn btn-primary" id="run-forecast-btn" onclick="app.runForecast()"
+                style="margin-top: 1.25rem; height: 42px; padding: 0 1.5rem;">
+                <i class="ph ph-lightning"></i> Calculate Forecast
+            </button>
+        </div>
+        <div id="forecast-timer"
+            style="font-size: 0.8rem; color: var(--text-muted); border-left: 2px solid var(--border-color); padding-left: 1rem;">
+            Next refresh in: <span id="forecast-countdown">60s</span>
+        </div>
+    </div>
+</div>
+
+<div class="dashboard-grid">
+    <!-- Main Result Card -->
+    <div class="card card-static" style="grid-column: span 2; display: flex; flex-direction: column;">
+        <div id="forecast-result-view" style="display: none;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 2rem;">
+                <div>
+                    <h3 style="margin:0 0 0.25rem;" id="forecast-symbol-header">AAPL Projection</h3>
+                    <div id="forecast-badge-container"></div>
+                </div>
+                <div class="chart-filters" id="forecast-chart-filters" style="margin-top: 0.5rem;">
+                    <button class="chart-filter-btn active" data-range="1M" onclick="app.runForecast('1M')">1M</button>
+                    <button class="chart-filter-btn" data-range="3M" onclick="app.runForecast('3M')">3M</button>
+                    <button class="chart-filter-btn" data-range="1Y" onclick="app.runForecast('1Y')">1Y</button>
+                    <button class="chart-filter-btn" data-range="ALL" onclick="app.runForecast('ALL')">ALL</button>
+                </div>
+                <div style="text-align: right;">
+                    <div
+                        style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted); margin-bottom: 0.25rem;">
+                        CONFIDENCE</div>
+                    <div style="font-size: 1.5rem; font-weight: 800; color: var(--text-main);"
+                        id="forecast-confidence-val">--%</div>
+                    <div class="confidence-container" style="width: 150px; margin-left: auto;">
+                        <div class="confidence-bar" id="forecast-confidence-bar" style="width: 0%;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="forecast-grid">
+                <div class="forecast-mini-card">
+                    <div class="forecast-mini-label">Trend</div>
+                    <div class="forecast-mini-value" id="val-trend">Neutral</div>
+                </div>
+                <div class="forecast-mini-card">
+                    <div class="forecast-mini-label">RSI (14)</div>
+                    <div class="forecast-mini-value" id="val-rsi">--</div>
+                </div>
+                <div class="forecast-mini-card">
+                    <div class="forecast-mini-label">Momentum</div>
+                    <div class="forecast-mini-value" id="val-momentum">--</div>
+                </div>
+                <div class="forecast-mini-card">
+                    <div class="forecast-mini-label">MACD</div>
+                    <div class="forecast-mini-value" id="val-macd">--</div>
+                </div>
+            </div>
+
+            <div style="margin-top: 2rem;">
+                <h4
+                    style="margin-bottom: 1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; font-size: 0.9rem;">
+                    Price Projection Chart</h4>
+                <div style="height: 300px;">
+                    <canvas id="predictionChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Empty/Placeholder State -->
+        <div id="forecast-placeholder"
+            style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 4rem; text-align: center; color: var(--text-muted);">
+            <i class="ph ph-chart-line-up" style="font-size: 4rem; margin-bottom: 1.5rem; opacity: 0.3;"></i>
+            <h3>Ready to Analyze</h3>
+            <p>Select a stock and click "Calculate Forecast" to run the mathematical engine.</p>
+        </div>
+    </div>
+
+    <!-- Indicator Breakdown -->
+    <div class="card">
+        <h3 style="margin-bottom: 1.5rem;">Indicator Scorecard</h3>
+        <div id="indicators-list" style="display: flex; flex-direction: column; gap: 0.75rem;">
+            <div style="padding: 3rem; text-align: center; color: var(--text-muted); font-size: 0.9rem;">
+                Run forecast to see details
+            </div>
+        </div>
+
+        <div
+            style="margin-top: 2rem; padding: 1rem; background: var(--bg-body); border-radius: 12px; border: 1px dashed var(--border-color);">
+            <div
+                style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem; font-weight: 700; font-size: 0.85rem;">
+                <i class="ph ph-info" style="color: var(--primary);"></i> Math Engine Info
+            </div>
+            <p style="font-size: 0.75rem; margin:0; line-height: 1.4;"> Projections are based on current data.
+                Confidence score > 70% suggests a higher probability trend. Always trade with risk management. </p>
+        </div>
+    </div>
+</div>
